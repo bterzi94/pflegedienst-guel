@@ -263,10 +263,19 @@
   render();
   }
 
-  /* ---------- Leistungen accordion ---------- */
+  /* ---------- Leistungen accordion (mobile only — always expanded on desktop) ---------- */
+
+  var isDesktop = window.matchMedia('(min-width: 1024px)');
+
+  if (isDesktop.matches) {
+    document.querySelectorAll('[data-accordion]').forEach(function (btn) {
+      btn.setAttribute('aria-expanded', 'true');
+    });
+  }
 
   document.querySelectorAll('[data-accordion]').forEach(function (btn) {
     btn.addEventListener('click', function () {
+      if (isDesktop.matches) return;
       var key = btn.getAttribute('data-accordion');
       var panel = document.querySelector('[data-accordion-panel="' + key + '"]');
       var isOpen = btn.getAttribute('aria-expanded') === 'true';

@@ -1035,8 +1035,10 @@ h2 {
   .accordion-item { display: flex; flex-direction: column; flex: 0 0 420px; }
   .accordion-item:last-child { flex: 1; }
   .accordion-divider { width: 1px; height: auto; }
-  .accordion-header { padding: 28px; }
+  .accordion-header { padding: 28px; cursor: default; }
   .accordion-panel { padding: 0 28px 28px; flex: 1; }
+  .accordion-panel[hidden] { display: block !important; }
+  .accordion-chevron { display: none; }
   .service-list li { font-size: 16px; }
   .service-list-2col { display: flex; flex-direction: column; flex-wrap: wrap; max-height: 420px; column-gap: 32px; }
   .service-list-2col li { flex: 0 0 auto; width: calc(50% - 16px); }
