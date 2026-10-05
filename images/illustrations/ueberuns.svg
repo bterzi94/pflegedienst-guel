@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 220" width="400" height="220"><rect width="400" height="220" fill="#faf8f3"/><g transform="translate(-30,-40) rotate(15) scale(1.5)" opacity="0.13"><path d="M172.5,112.9c-2.1,21.1-17.1,38.9-36.9,46.6c-19.8,7.7-42.5,4.9-59.8-7.4c-17.3-12.3-27.6-33-26.4-54.2c1.2-21.2,13.9-41.1,33.3-50.1c19.4-9,43.5-6.4,60.7,6.4C160.6,67,174.6,91.8,172.5,112.9z" fill="#1b3865"/></g><g transform="translate(260,70) rotate(-10) scale(1.1)" opacity="0.15"><path d="M152.9,36.3c17.5,14.5,25.8,38.6,21.4,60.6c-4.4,22-21.1,40.9-42.1,48.6c-21,7.7-45.3,4-62.6-9.9C52.3,121.7,42,99.7,43.8,77.7c1.8-22,15.6-42.4,35.6-51.8C99.4,16.5,124.3,15.1,152.9,36.3z" fill="#e2231a"/></g><circle cx="330" cy="20" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="330" cy="33" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="330" cy="46" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="330" cy="59" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="343" cy="20" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="343" cy="33" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="343" cy="46" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="343" cy="59" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="356" cy="20" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="356" cy="33" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="356" cy="46" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="356" cy="59" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="369" cy="20" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="369" cy="33" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="369" cy="46" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="369" cy="59" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="382" cy="20" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="382" cy="33" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="382" cy="46" r="1.8" fill="#1b3865" opacity="0.18"/>
+<circle cx="382" cy="59" r="1.8" fill="#1b3865" opacity="0.18"/><path d="M0,160 Q150,210 400,140" stroke="#b8181a" stroke-width="1.5" fill="none" opacity="0.14"/></svg>

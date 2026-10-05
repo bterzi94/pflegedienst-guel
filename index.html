@@ -18,7 +18,7 @@
       <a href="#start" class="navlink">Start</a>
       <a href="#ueber-uns" class="navlink">Über uns</a>
       <a href="#leistungen" class="navlink">Leistungen</a>
-      <a href="#karriere" class="navlink">Karriere</a>
+      <a href="#team" class="navlink">Team</a>
       <a href="#kontakt" class="navlink">Kontakt</a>
     </nav>
 
@@ -40,7 +40,7 @@
     <a href="#start">Start</a>
     <a href="#ueber-uns">Über uns</a>
     <a href="#leistungen">Leistungen</a>
-    <a href="#karriere">Karriere</a>
+    <a href="#team">Team</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
 </header>
@@ -98,7 +98,7 @@
           <span>KI-gestützte Sofortberatung</span>
         </div>
 
-        <div class="chat-card">
+        <div class="chat-card" id="lina-chat">
           <div class="chat-card-header">
             <span class="chat-avatar">L</span>
             <span class="chat-header-text">
@@ -219,7 +219,439 @@
       </div>
     </div>
   </section>
+
+  <section class="section" id="ueber-uns">
+    <div class="section-inner ueberuns-row">
+      <div class="ueberuns-text">
+        <p class="eyebrow section-eyebrow">Über uns</p>
+        <h2>Pflege, der Sie vertrauen können</h2>
+        <p class="section-intro">Pflegedienst Gül ist Ihr Ansprechpartner für ambulante und Intensivpflege in Mönchengladbach und Umgebung. Pflege ist für uns mehr als Routine – sie ist Vertrauen, Zeit und echtes Zuhören. Deshalb begleiten wir Sie und Ihre Angehörigen mit einem Team, das fachlich kompetent ist und sich wirklich Zeit nimmt. Ambulant oder intensiv – wir passen uns Ihrem Alltag an, nicht umgekehrt.</p>
+
+        <div class="value-list">
+          <div class="value-item">
+            <span class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </span>
+            <div>
+              <p class="value-title">Feste Bezugspersonen</p>
+              <p class="value-text">Immer dieselben vertrauten Gesichter statt wechselndes Personal.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+            </span>
+            <div>
+              <p class="value-title">Flexibel erreichbar</p>
+              <p class="value-text">Auch kurzfristig und außerhalb üblicher Zeiten für Sie da.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5z"></path><path d="m9 12 2 2 4-4"></path></svg>
+            </span>
+            <div>
+              <p class="value-title">Geprüfte Qualität</p>
+              <p class="value-text">Qualifiziertes Fachpersonal nach höchsten Pflegestandards.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ueberuns-media">
+        <div class="ueberuns-media-frame">
+          <img src="images/illustrations/ueberuns.svg" alt="" aria-hidden="true">
+        </div>
+        <div class="ueberuns-badge">
+          <span class="ueberuns-badge-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </span>
+          <span class="ueberuns-badge-text">
+            <span class="ueberuns-badge-title">Mit Herz</span>
+            <span class="ueberuns-badge-sub">seit vielen Jahren im Dienst</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint" id="leistungen">
+    <div class="section-inner">
+      <p class="eyebrow section-eyebrow">Unsere Leistungen</p>
+      <h2>Leistungen, auf die Sie sich verlassen können</h2>
+      <p class="section-intro">Von der ambulanten Unterstützung im Alltag bis zur spezialisierten Intensivpflege – alles aus einer Hand.</p>
+
+      <div class="accordion">
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" data-accordion="ambulant" aria-expanded="true">
+            <span class="accordion-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>
+            </span>
+            <span class="accordion-title">
+              <span class="accordion-title-main">Ambulante Pflege</span>
+              <span class="accordion-title-sub">Unterstützung in den eigenen vier Wänden</span>
+            </span>
+            <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="accordion-panel" data-accordion-panel="ambulant">
+            <ul class="service-list">
+              <li>Grundpflege</li>
+              <li>Behandlungspflege</li>
+              <li>Hauswirtschaftliche Versorgung</li>
+              <li>Beratung</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-divider"></div>
+
+        <div class="accordion-item">
+          <button type="button" class="accordion-header" data-accordion="intensiv" aria-expanded="false">
+            <span class="accordion-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+            </span>
+            <span class="accordion-title">
+              <span class="accordion-title-main">Intensivpflege</span>
+              <span class="accordion-title-sub">Spezialisierte Betreuung bei hohem Pflegebedarf</span>
+            </span>
+            <svg class="accordion-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="accordion-panel" data-accordion-panel="intensiv" hidden>
+            <ul class="service-list service-list-2col">
+              <li>Beatmungspflege</li>
+              <li>Behandlungspflege</li>
+              <li>Wachkomabetreuung</li>
+              <li>Kinderintensivpflege</li>
+              <li>Tracheostomaversorgung</li>
+              <li>Pflege bei neurologischen Erkrankungen</li>
+              <li>Grundpflege</li>
+              <li>Notfallmanagement</li>
+              <li>Beratung</li>
+              <li>Angehörigenschulung</li>
+              <li>Hauswirtschaft &amp; Beratung</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="so-funktionierts">
+    <div class="section-inner">
+      <p class="eyebrow section-eyebrow">So funktioniert's</p>
+      <h2>In drei Schritten zur passenden Pflege</h2>
+
+      <div class="steps">
+        <div class="step">
+          <span class="step-number">01</span>
+          <div>
+            <p class="step-title">Kontakt aufnehmen</p>
+            <p class="step-text">Rufen Sie an, schreiben Sie uns oder nutzen Sie den Chat – wir hören Ihnen zu.</p>
+          </div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step">
+          <span class="step-number">02</span>
+          <div>
+            <p class="step-title">Beratungsgespräch</p>
+            <p class="step-text">Wir besprechen Ihre Situation und finden gemeinsam die passende Versorgung.</p>
+          </div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step">
+          <span class="step-number">03</span>
+          <div>
+            <p class="step-title">Pflege beginnt</p>
+            <p class="step-text">Ihr festes Team startet die Versorgung – zuverlässig und persönlich.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint" id="pflegegeld">
+    <div class="section-inner">
+      <p class="eyebrow section-eyebrow">Gut zu wissen</p>
+      <h2>Pflegegeld und Ihre Krankenkasse</h2>
+
+      <div class="info-cols">
+        <div class="info-col">
+          <img src="images/illustrations/pflegegeld.svg" alt="" aria-hidden="true" class="info-img">
+          <p class="info-title">Pflegegeld</p>
+          <p class="info-text">Wenn Angehörige die Pflege zu Hause übernehmen, zahlt die Pflegekasse Pflegegeld – gestaffelt nach Pflegegrad. Pflegegeld lässt sich zudem mit professionellen Pflegeleistungen kombinieren: Bei der sogenannten Kombinationsleistung übernehmen wir einen Teil der Pflege, während Angehörige weiterhin anteilig Pflegegeld erhalten. Wir beraten Sie gerne, wie sich Pflegegeld und unsere Leistungen optimal miteinander verbinden lassen.</p>
+        </div>
+        <div class="info-col">
+          <img src="images/illustrations/krankenkasse.svg" alt="" aria-hidden="true" class="info-img">
+          <p class="info-title">Krankenkassen</p>
+          <p class="info-text">Wir arbeiten eng mit allen gesetzlichen Kranken- und Pflegekassen zusammen und rechnen unsere Leistungen in der Regel direkt mit Ihrer Kasse ab – ohne Mehraufwand für Sie. Bei Fragen zu Leistungsansprüchen, Pflegegrad-Anträgen oder dem Ablauf mit Ihrer Krankenkasse unterstützen wir Sie persönlich und begleiten Sie durch den gesamten Prozess.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="team">
+    <p class="eyebrow section-eyebrow section-heading-padded">Unser Team</p>
+    <h2 class="section-heading-padded">Menschen, die sich wirklich kümmern</h2>
+    <p class="section-intro section-intro-padded">Qualifizierte Pflegefachkräfte mit Herz – für Ihre ambulante und intensivmedizinische Versorgung.</p>
+
+    <div class="team-scroll">
+      <div class="team-card">
+        <img src="images/illustrations/team1.svg" alt="Max Mustermann" class="team-photo">
+        <p class="team-name">Max Mustermann</p>
+        <p class="team-role">Pflegedienstleitung</p>
+      </div>
+      <div class="team-card">
+        <img src="images/illustrations/team2.svg" alt="Erika Mustermann" class="team-photo">
+        <p class="team-name">Erika Mustermann</p>
+        <p class="team-role">Pflegefachkraft – Ambulant</p>
+      </div>
+      <div class="team-card">
+        <img src="images/illustrations/team3.svg" alt="Max Mustermann" class="team-photo">
+        <p class="team-name">Max Mustermann</p>
+        <p class="team-role">Pflegefachkraft – Intensiv</p>
+      </div>
+      <div class="team-card">
+        <img src="images/illustrations/team4.svg" alt="Erika Mustermann" class="team-photo">
+        <p class="team-name">Erika Mustermann</p>
+        <p class="team-role">Qualitätsmanagement</p>
+      </div>
+    </div>
+
+    <div class="section-inner team-cta-row">
+      <a href="#kontakt" class="team-cta">
+        Werden Sie Teil unseres Teams
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8181a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-inner">
+      <p class="eyebrow section-eyebrow">Häufige Fragen</p>
+      <h2>Antworten auf Ihre wichtigsten Fragen</h2>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button type="button" class="faq-header" data-faq="1" aria-expanded="true">
+            <span>Wie schnell kann die Pflege beginnen?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-panel" data-faq-panel="1">
+            <p>In der Regel können wir die Versorgung innerhalb von wenigen Tagen nach dem Erstgespräch beginnen. Bei akutem Bedarf, etwa nach einem Krankenhausaufenthalt, bemühen wir uns um einen noch schnelleren Start.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-header" data-faq="2" aria-expanded="false">
+            <span>Übernimmt die Pflegekasse die Kosten?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-panel" data-faq-panel="2" hidden>
+            <p>Je nach Pflegegrad übernimmt die Pflegekasse einen Großteil oder die vollen Kosten für ambulante Pflegeleistungen. Wir prüfen Ihren Anspruch gemeinsam mit Ihnen und rechnen in der Regel direkt mit Ihrer Kasse ab.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-header" data-faq="3" aria-expanded="false">
+            <span>Was unterscheidet ambulante Pflege von Intensivpflege?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-panel" data-faq-panel="3" hidden>
+            <p>Ambulante Pflege unterstützt Sie im Alltag, etwa bei Grundpflege, Behandlungspflege oder im Haushalt. Intensivpflege richtet sich an Menschen mit hohem medizinischem Versorgungsbedarf, zum Beispiel bei Beatmung oder Wachkoma, und erfordert spezialisiertes Fachpersonal.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-header" data-faq="4" aria-expanded="false">
+            <span>Kann ich von meinem bisherigen Pflegedienst zu Ihnen wechseln?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-panel" data-faq-panel="4" hidden>
+            <p>Ja, ein Wechsel ist jederzeit möglich. Wir übernehmen für Sie die Abstimmung mit Ihrer Pflegekasse und dem bisherigen Dienst, damit die Versorgung nahtlos weiterläuft.</p>
+          </div>
+        </div>
+
+        <div class="faq-item faq-item-last">
+          <button type="button" class="faq-header" data-faq="5" aria-expanded="false">
+            <span>Bieten Sie auch Pflege nachts oder am Wochenende an?</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8a8a84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </button>
+          <div class="faq-panel" data-faq-panel="5" hidden>
+            <p>Ja. Je nach individuellem Bedarf können wir Einsätze auch abends, nachts und am Wochenende abdecken – sprechen Sie uns gerne auf Ihre konkrete Situation an.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tint" id="kontakt">
+    <div class="section-inner">
+      <p class="eyebrow section-eyebrow">Kontakt</p>
+      <h2>Wir sind für Sie da</h2>
+      <p class="section-intro">Schreiben Sie uns, rufen Sie an oder kommen Sie vorbei – wir melden uns schnellstmöglich zurück.</p>
+
+      <div class="kontakt-grid">
+
+        <div class="kontakt-col">
+
+          <div class="kontakt-quick">
+            <a href="tel:+4921669988994" class="method-btn kontakt-method-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              02166 - 99 88 994
+            </a>
+            <a href="mailto:info@pflegedienst-guel.de" class="method-btn kontakt-method-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6z"></path><path d="m22 6-10 7L2 6"></path></svg>
+              info@pflegedienst-guel.de
+            </a>
+          </div>
+
+          <div class="kontakt-card">
+            <img src="images/illustrations/karte.svg" alt="Lageplan" class="kontakt-map">
+            <div class="kontakt-card-body">
+              <p class="kontakt-card-title">Pflegedienst Gül</p>
+              <p class="kontakt-card-text">Burgfreiheit 59<br>41199 Mönchengladbach-Odenkirchen</p>
+              <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Burgfreiheit+59+41199+M%C3%B6nchengladbach-Odenkirchen" class="kontakt-link">
+                Anfahrt planen
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b8181a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="kontakt-card kontakt-card-pad">
+            <p class="kontakt-card-title">Erreichbarkeit</p>
+            <div class="hours-row">
+              <span>Montag – Freitag</span>
+              <span class="hours-value">8:00 – 17:00 Uhr</span>
+            </div>
+            <div class="hours-row">
+              <span>Samstag</span>
+              <span class="hours-value">9:00 – 17:00 Uhr</span>
+            </div>
+            <div class="hours-row hours-row-last">
+              <span>Sonntag</span>
+              <span class="hours-value">Geschlossen</span>
+            </div>
+            <div class="hours-note">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2e9e50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>
+              <span>Für unsere Pflegekund:innen sind wir rund um die Uhr erreichbar – auch nachts und am Wochenende.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="kontakt-col kontakt-col-form">
+          <div class="kontakt-card kontakt-card-pad">
+
+            <div data-el="kontaktForm">
+              <p class="kontakt-card-title">Nachricht schreiben</p>
+              <p class="kontakt-card-hint">Wir melden uns in der Regel innerhalb eines Werktags.</p>
+
+              <div class="kontakt-form-row">
+                <div>
+                  <label for="kName" class="field-label">Name</label>
+                  <input id="kName" type="text" class="field-input" placeholder="Ihr Name">
+                </div>
+                <div>
+                  <label for="kPhone" class="field-label">Telefonnummer (optional)</label>
+                  <input id="kPhone" type="tel" class="field-input" placeholder="Ihre Telefonnummer">
+                </div>
+              </div>
+
+              <label for="kEmail" class="field-label">E-Mail</label>
+              <input id="kEmail" type="email" class="field-input" placeholder="name@email.de">
+
+              <label for="kMessage" class="field-label">Nachricht</label>
+              <textarea id="kMessage" class="field-input field-textarea kontakt-textarea" placeholder="Wie können wir helfen?"></textarea>
+
+              <label class="kontakt-consent">
+                <input type="checkbox" id="kConsent">
+                <span>Ich habe die <a href="datenschutzerklaerung.html">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden.</span>
+              </label>
+
+              <button type="button" class="submit-btn" id="kontaktSubmit" disabled>Nachricht senden</button>
+            </div>
+
+            <div data-el="kontaktDone" hidden class="kontakt-done">
+              <span class="kontakt-done-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e9e50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              </span>
+              <p class="kontakt-done-title">Vielen Dank, <span data-text="kontaktDoneName"></span>!</p>
+              <p class="kontakt-done-text">Ihre Nachricht ist bei uns eingegangen. Wir melden uns in der Regel innerhalb eines Werktags bei Ihnen.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <a href="#lina-chat" class="lina-hint">
+        <span class="lina-hint-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e2231a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        </span>
+        <span>
+          <span class="lina-hint-title">Lieber direkt chatten?</span>
+          <span class="lina-hint-link">
+            Jetzt mit Lina chatten
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#b8181a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+          </span>
+        </span>
+      </a>
+    </div>
+  </section>
 </main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p class="footer-logo">Pflegedienst Gül</p>
+        <p class="footer-tagline">Ambulante &amp; Intensivpflege in Mönchengladbach und Umgebung – persönlich, zuverlässig und mit Herz.</p>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-heading">Navigation</p>
+        <a href="#start">Start</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#team">Team</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-heading">Rechtliches</p>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutzerklaerung.html">Datenschutz</a>
+      </div>
+
+      <div class="footer-col footer-col-contact">
+        <p class="footer-heading">Kontakt</p>
+        <a href="tel:+4921669988994" class="footer-contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff8a7f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          02166 - 99 88 994
+        </a>
+        <a href="mailto:info@pflegedienst-guel.de" class="footer-contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff8a7f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 6c0-1.1-.9-2-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6z"></path><path d="m22 6-10 7L2 6"></path></svg>
+          info@pflegedienst-guel.de
+        </a>
+        <div class="footer-contact-link footer-address">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff8a7f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <span>Burgfreiheit 59, 41199 Mönchengladbach-Odenkirchen</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Pflegedienst Gül. Alle Rechte vorbehalten.</p>
+      <p>Webdesign &amp; Local SEO: <a href="https://burakterzi.de/">burakterzi.de</a></p>
+    </div>
+
+  </div>
+</footer>
 
 <a href="tel:+4921669988994" class="mobile-floating-cta">
   <span class="mobile-cta-label">Kostenlose Pflegeberatung</span>

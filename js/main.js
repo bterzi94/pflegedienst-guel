@@ -29,8 +29,9 @@
   /* ---------- Chat assistant "Lina" ---------- */
 
   var thread = document.getElementById('chatThread');
-  if (!thread) return;
+  if (thread) initChat(thread);
 
+  function initChat(thread) {
   var TOPIC_LABELS = { home: 'Pflege zu Hause', question: 'Frage stellen' };
   var METHOD_LABELS = { callback: 'Rückruf vereinbaren', form: 'Formular ausfüllen' };
   var TIME_LABELS = { morning: 'Vormittags', afternoon: 'Nachmittags', evening: 'Abends' };
@@ -260,4 +261,54 @@
   });
 
   render();
+  }
+
+  /* ---------- Leistungen accordion ---------- */
+
+  document.querySelectorAll('[data-accordion]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var key = btn.getAttribute('data-accordion');
+      var panel = document.querySelector('[data-accordion-panel="' + key + '"]');
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      if (panel) panel.hidden = isOpen;
+    });
+  });
+
+  /* ---------- FAQ accordion ---------- */
+
+  document.querySelectorAll('[data-faq]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var key = btn.getAttribute('data-faq');
+      var panel = document.querySelector('[data-faq-panel="' + key + '"]');
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      if (panel) panel.hidden = isOpen;
+    });
+  });
+
+  /* ---------- Kontakt form ---------- */
+
+  var kName = document.getElementById('kName');
+  var kEmail = document.getElementById('kEmail');
+  var kConsent = document.getElementById('kConsent');
+  var kontaktSubmit = document.getElementById('kontaktSubmit');
+
+  if (kName && kEmail && kConsent && kontaktSubmit) {
+    function updateKontaktSubmit() {
+      kontaktSubmit.disabled = !(kName.value.trim() && kEmail.value.trim() && kConsent.checked);
+    }
+    [kName, kEmail].forEach(function (el) { el.addEventListener('input', updateKontaktSubmit); });
+    kConsent.addEventListener('change', updateKontaktSubmit);
+
+    kontaktSubmit.addEventListener('click', function () {
+      if (kontaktSubmit.disabled) return;
+      var formEl = document.querySelector('[data-el="kontaktForm"]');
+      var doneEl = document.querySelector('[data-el="kontaktDone"]');
+      var nameSpan = document.querySelector('[data-text="kontaktDoneName"]');
+      if (nameSpan) nameSpan.textContent = kName.value.trim();
+      if (formEl) formEl.hidden = true;
+      if (doneEl) doneEl.hidden = false;
+    });
+  }
 })();
