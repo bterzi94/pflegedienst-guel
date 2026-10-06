@@ -2,6 +2,11 @@
 
 * { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 :root {
   --navy: #1b3865;
   --red: #e2231a;
