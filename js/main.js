@@ -320,4 +320,29 @@
       if (doneEl) doneEl.hidden = false;
     });
   }
+
+  /* ---------- Bewerbungsformular (jobs.html) ---------- */
+
+  var jFirstname = document.getElementById('jFirstname');
+  var jEmail = document.getElementById('jEmail');
+  var jConsent = document.getElementById('jConsent');
+  var jobApplySubmit = document.getElementById('jobApplySubmit');
+
+  if (jFirstname && jEmail && jConsent && jobApplySubmit) {
+    function updateApplySubmit() {
+      jobApplySubmit.disabled = !(jFirstname.value.trim() && jEmail.value.trim() && jConsent.checked);
+    }
+    [jFirstname, jEmail].forEach(function (el) { el.addEventListener('input', updateApplySubmit); });
+    jConsent.addEventListener('change', updateApplySubmit);
+
+    jobApplySubmit.addEventListener('click', function () {
+      if (jobApplySubmit.disabled) return;
+      var formEl = document.querySelector('[data-el="applyForm"]');
+      var doneEl = document.querySelector('[data-el="applyDone"]');
+      var nameSpan = document.querySelector('[data-text="applyDoneName"]');
+      if (nameSpan) nameSpan.textContent = jFirstname.value.trim();
+      if (formEl) formEl.hidden = true;
+      if (doneEl) doneEl.hidden = false;
+    });
+  }
 })();
