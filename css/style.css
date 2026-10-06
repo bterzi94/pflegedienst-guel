@@ -498,7 +498,8 @@ h1 {
 /* ---------- Shared section layout ---------- */
 
 .section { padding: 56px 20px 48px; }
-#team.section { padding-left: 0; padding-right: 0; }
+#team.section,
+#bewertungen.section { padding-left: 0; padding-right: 0; }
 .section-tint { background: var(--cream); }
 .section-inner { max-width: 1200px; margin: 0 auto; }
 
@@ -1247,7 +1248,8 @@ a.content-item:hover .content-title svg { transform: translateX(3px); }
   /* ---------- Shared section layout ---------- */
 
   .section { padding: 100px 64px 120px; }
-  #team.section { padding-left: 64px; padding-right: 64px; }
+  #team.section,
+  #bewertungen.section { padding-left: 64px; padding-right: 64px; }
   .section-heading-padded,
   .section-intro-padded { padding: 0; }
 
