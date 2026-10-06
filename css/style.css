@@ -976,6 +976,7 @@ a.content-item:hover .content-title svg { transform: translateX(3px); }
 .footer-col-contact { display: block; }
 .footer-contact-link { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; color: #e4e8f0; text-decoration: none; }
 .footer-contact-link:last-child { margin-bottom: 0; }
+.footer-contact-link svg { flex-shrink: 0; }
 .footer-address { align-items: flex-start; }
 .footer-address svg { margin-top: 2px; }
 
