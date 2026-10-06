@@ -26,6 +26,35 @@
     });
   }
 
+  /* ---------- Desktop "Leistungen" dropdown ---------- */
+
+  document.querySelectorAll('.nav-dropdown-trigger').forEach(function (btn) {
+    var wrap = btn.closest('.nav-item-dropdown');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = wrap.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+  document.addEventListener('click', function () {
+    document.querySelectorAll('.nav-item-dropdown.is-open').forEach(function (wrap) {
+      wrap.classList.remove('is-open');
+      var btn = wrap.querySelector('.nav-dropdown-trigger');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ---------- Mobile menu submenu toggle ---------- */
+
+  document.querySelectorAll('.mobile-menu-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      var submenu = btn.nextElementSibling;
+      if (submenu) submenu.hidden = isOpen;
+    });
+  });
+
   /* ---------- Chat assistant "Lina" ---------- */
 
   var thread = document.getElementById('chatThread');
