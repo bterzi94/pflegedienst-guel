@@ -396,7 +396,9 @@
                   <input id="cbName" type="text" class="field-input" placeholder="Ihr Name">
                   <label for="cbPhone" class="field-label">Telefonnummer</label>
                   <input id="cbPhone" type="tel" class="field-input" placeholder="Ihre Telefonnummer">
-                  <button type="button" class="submit-btn" data-action="submitCallback">Absenden</button>
+                  <div class="turnstile-widget" data-turnstile="chat-callback"></div>
+                  <button type="button" class="submit-btn" id="cbSubmit" data-action="submitCallback" disabled>Absenden</button>
+                  <p class="form-error" data-el="callbackError" hidden>Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an.</p>
                 </div>
               </div>
 
@@ -420,7 +422,9 @@
                   <input id="fEmail" type="email" class="field-input" placeholder="name@email.de">
                   <label for="fMessage" class="field-label">Nachricht</label>
                   <textarea id="fMessage" class="field-input field-textarea" placeholder="Ihre Nachricht …"></textarea>
-                  <button type="button" class="submit-btn" data-action="submitForm">Absenden</button>
+                  <div class="turnstile-widget" data-turnstile="chat-form"></div>
+                  <button type="button" class="submit-btn" id="fSubmit" data-action="submitForm" disabled>Absenden</button>
+                  <p class="form-error" data-el="formError" hidden>Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an.</p>
                 </div>
               </div>
 
@@ -911,7 +915,9 @@
                 <span>Ich habe die <a href="/datenschutzerklaerung">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden.</span>
               </label>
 
+              <div class="turnstile-widget" data-turnstile="kontakt"></div>
               <button type="button" class="submit-btn" id="kontaktSubmit" disabled>Nachricht senden</button>
+              <p class="form-error" data-el="kontaktError" hidden>Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an.</p>
             </div>
 
             <div data-el="kontaktDone" hidden class="kontakt-done">
@@ -1006,5 +1012,6 @@
 </a>
 
 <script src="js/main.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
 </body>
 </html>

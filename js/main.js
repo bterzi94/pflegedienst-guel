@@ -3,6 +3,92 @@
 (function () {
   'use strict';
 
+  /* ---------- Formspark + Cloudflare Turnstile ---------- */
+  /* Every form on the site posts here. Turnstile protects each one; a
+     widget only renders where a [data-turnstile="<key>"] container exists
+     on the page, so most pages render just one ("kontakt"), the homepage
+     renders three (kontakt + both Lina chat paths), jobs.html renders
+     "apply". */
+
+  var FORMSPARK_ACTION_URL = 'https://submit-form.com/gWB1obGxN';
+  var TURNSTILE_SITE_KEY = '0x4AAAAAAFPVb2XW8ZdTl6bt';
+
+  var turnstileTokens = {};
+  var turnstileWidgetIds = {};
+  var turnstileChangeHandlers = {};
+
+  function onTurnstileChange(key) {
+    if (turnstileChangeHandlers[key]) turnstileChangeHandlers[key]();
+  }
+
+  function renderTurnstileWidgets() {
+    if (typeof turnstile === 'undefined') return;
+    document.querySelectorAll('[data-turnstile]').forEach(function (el) {
+      if (el.getAttribute('data-rendered') === 'true') return;
+      el.setAttribute('data-rendered', 'true');
+      var key = el.getAttribute('data-turnstile');
+      turnstileWidgetIds[key] = turnstile.render(el, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: function (token) {
+          turnstileTokens[key] = token;
+          onTurnstileChange(key);
+        },
+        'expired-callback': function () {
+          turnstileTokens[key] = null;
+          onTurnstileChange(key);
+        },
+        'error-callback': function () {
+          turnstileTokens[key] = null;
+          onTurnstileChange(key);
+        },
+      });
+    });
+  }
+  window.onloadTurnstileCallback = renderTurnstileWidgets;
+  // In case the Turnstile script already finished loading before this ran.
+  if (typeof turnstile !== 'undefined') renderTurnstileWidgets();
+
+  function resetTurnstile(key) {
+    turnstileTokens[key] = null;
+    if (typeof turnstile !== 'undefined' && turnstileWidgetIds[key] != null) {
+      turnstile.reset(turnstileWidgetIds[key]);
+    }
+  }
+
+  function submitToFormspark(fields, formName, turnstileKey) {
+    var payload = {};
+    Object.keys(fields).forEach(function (k) { payload[k] = fields[k]; });
+    payload._form = formName;
+    payload._page = window.location.href;
+    payload['cf-turnstile-response'] = turnstileTokens[turnstileKey] || '';
+
+    return fetch(FORMSPARK_ACTION_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload),
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Formspark submit failed: ' + res.status);
+      return res;
+    });
+  }
+
+  // Same as submitToFormspark, but for forms that may include a file
+  // (multipart/form-data — JSON can't carry a binary attachment).
+  function submitFormDataToFormspark(formData, formName, turnstileKey) {
+    formData.append('_form', formName);
+    formData.append('_page', window.location.href);
+    formData.append('cf-turnstile-response', turnstileTokens[turnstileKey] || '');
+
+    return fetch(FORMSPARK_ACTION_URL, {
+      method: 'POST',
+      headers: { Accept: 'application/json' }, // no Content-Type: the browser sets the multipart boundary itself
+      body: formData,
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Formspark submit failed: ' + res.status);
+      return res;
+    });
+  }
+
   /* ---------- Hamburger / mobile menu ---------- */
 
   var hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -98,6 +184,20 @@
   };
 
   var scrollHint = thread.parentElement.querySelector('[data-el="scrollHint"]');
+
+  /* Both chat sub-forms stay disabled until their Turnstile widget clears. */
+  var cbSubmitBtn = document.getElementById('cbSubmit');
+  var fSubmitBtn = document.getElementById('fSubmit');
+  if (cbSubmitBtn) {
+    turnstileChangeHandlers['chat-callback'] = function () {
+      cbSubmitBtn.disabled = !turnstileTokens['chat-callback'];
+    };
+  }
+  if (fSubmitBtn) {
+    turnstileChangeHandlers['chat-form'] = function () {
+      fSubmitBtn.disabled = !turnstileTokens['chat-form'];
+    };
+  }
 
   function render() {
     var s = state;
@@ -255,21 +355,58 @@
 
     if (action === 'submitCallback') {
       btn.addEventListener('click', function () {
+        if (btn.disabled) return;
         var nameEl = document.getElementById('cbName');
         var phoneEl = document.getElementById('cbPhone');
-        state.name = (nameEl && nameEl.value.trim()) || 'Ihnen';
-        state.phone = (phoneEl && phoneEl.value.trim()) || '';
-        advance('doneCallback', { callbackSubmitted: true });
+        var name = (nameEl && nameEl.value.trim()) || '';
+        var phone = (phoneEl && phoneEl.value.trim()) || '';
+        var errorEl = $('callbackError');
+        if (errorEl) errorEl.hidden = true;
+        btn.disabled = true;
+
+        submitToFormspark({
+          name: name || 'Unbekannt',
+          phone: phone,
+          callbackTime: TIME_LABELS[state.callbackTime] || '',
+        }, 'Lina Chat – Rückruf', 'chat-callback').then(function () {
+          state.name = name || 'Ihnen';
+          state.phone = phone;
+          advance('doneCallback', { callbackSubmitted: true });
+        }).catch(function () {
+          resetTurnstile('chat-callback');
+          btn.disabled = true; // stays disabled until the widget clears again
+          if (errorEl) errorEl.hidden = false;
+        });
       });
     }
 
     if (action === 'submitForm') {
       btn.addEventListener('click', function () {
+        if (btn.disabled) return;
         var nameEl = document.getElementById('fName');
+        var phoneEl = document.getElementById('fPhone');
+        var emailEl = document.getElementById('fEmail');
         var messageEl = document.getElementById('fMessage');
-        state.name = (nameEl && nameEl.value.trim()) || 'Ihnen';
-        state.message = (messageEl && messageEl.value.trim()) || '';
-        advance('doneForm', { formSubmitted: true });
+        var name = (nameEl && nameEl.value.trim()) || '';
+        var message = (messageEl && messageEl.value.trim()) || '';
+        var errorEl = $('formError');
+        if (errorEl) errorEl.hidden = true;
+        btn.disabled = true;
+
+        submitToFormspark({
+          name: name || 'Unbekannt',
+          phone: (phoneEl && phoneEl.value.trim()) || '',
+          email: (emailEl && emailEl.value.trim()) || '',
+          message: message,
+        }, 'Lina Chat – Formular', 'chat-form').then(function () {
+          state.name = name || 'Ihnen';
+          state.message = message;
+          advance('doneForm', { formSubmitted: true });
+        }).catch(function () {
+          resetTurnstile('chat-form');
+          btn.disabled = true; // stays disabled until the widget clears again
+          if (errorEl) errorEl.hidden = false;
+        });
       });
     }
   });
@@ -318,20 +455,45 @@
   var kontaktSubmit = document.getElementById('kontaktSubmit');
 
   if (kName && kEmail && kConsent && kontaktSubmit) {
+    var kPhone = document.getElementById('kPhone');
+    var kSubject = document.getElementById('kSubject');
+    var kMessage = document.getElementById('kMessage');
+    var kontaktError = document.querySelector('[data-el="kontaktError"]');
+    var kontaktSubmitLabel = kontaktSubmit.textContent;
+
     function updateKontaktSubmit() {
-      kontaktSubmit.disabled = !(kName.value.trim() && kEmail.value.trim() && kConsent.checked);
+      kontaktSubmit.disabled = !(kName.value.trim() && kEmail.value.trim() && kConsent.checked && turnstileTokens.kontakt);
     }
+    turnstileChangeHandlers.kontakt = updateKontaktSubmit;
     [kName, kEmail].forEach(function (el) { el.addEventListener('input', updateKontaktSubmit); });
     kConsent.addEventListener('change', updateKontaktSubmit);
+    updateKontaktSubmit();
 
     kontaktSubmit.addEventListener('click', function () {
       if (kontaktSubmit.disabled) return;
-      var formEl = document.querySelector('[data-el="kontaktForm"]');
-      var doneEl = document.querySelector('[data-el="kontaktDone"]');
-      var nameSpan = document.querySelector('[data-text="kontaktDoneName"]');
-      if (nameSpan) nameSpan.textContent = kName.value.trim();
-      if (formEl) formEl.hidden = true;
-      if (doneEl) doneEl.hidden = false;
+      kontaktSubmit.disabled = true;
+      kontaktSubmit.textContent = 'Wird gesendet …';
+      if (kontaktError) kontaktError.hidden = true;
+
+      submitToFormspark({
+        name: kName.value.trim(),
+        phone: kPhone ? kPhone.value.trim() : '',
+        email: kEmail.value.trim(),
+        subject: kSubject ? kSubject.value : '',
+        message: kMessage ? kMessage.value.trim() : '',
+      }, 'Kontaktformular', 'kontakt').then(function () {
+        var formEl = document.querySelector('[data-el="kontaktForm"]');
+        var doneEl = document.querySelector('[data-el="kontaktDone"]');
+        var nameSpan = document.querySelector('[data-text="kontaktDoneName"]');
+        if (nameSpan) nameSpan.textContent = kName.value.trim();
+        if (formEl) formEl.hidden = true;
+        if (doneEl) doneEl.hidden = false;
+      }).catch(function () {
+        kontaktSubmit.textContent = kontaktSubmitLabel;
+        resetTurnstile('kontakt');
+        updateKontaktSubmit();
+        if (kontaktError) kontaktError.hidden = false;
+      });
     });
   }
 
@@ -343,20 +505,79 @@
   var jobApplySubmit = document.getElementById('jobApplySubmit');
 
   if (jFirstname && jEmail && jConsent && jobApplySubmit) {
-    function updateApplySubmit() {
-      jobApplySubmit.disabled = !(jFirstname.value.trim() && jEmail.value.trim() && jConsent.checked);
+    var jLastname = document.getElementById('jLastname');
+    var jPhone = document.getElementById('jPhone');
+    var jPosition = document.getElementById('jPosition');
+    var jMessage = document.getElementById('jMessage');
+    var jResume = document.getElementById('jResume');
+    var jResumeLabel = document.getElementById('jResumeLabel');
+    var jResumeLabelText = document.getElementById('jResumeLabelText');
+    var resumeError = document.querySelector('[data-el="resumeError"]');
+    var applyError = document.querySelector('[data-el="applyError"]');
+    var applySubmitLabel = jobApplySubmit.textContent;
+    var RESUME_LABEL_DEFAULT = jResumeLabelText ? jResumeLabelText.textContent : '';
+    var RESUME_MAX_BYTES = 10 * 1024 * 1024;
+
+    if (jResume) {
+      jResume.addEventListener('change', function () {
+        var file = jResume.files && jResume.files[0];
+        if (!file) {
+          if (jResumeLabelText) jResumeLabelText.textContent = RESUME_LABEL_DEFAULT;
+          if (jResumeLabel) jResumeLabel.classList.remove('has-file');
+          if (resumeError) resumeError.hidden = true;
+          return;
+        }
+        if (file.size > RESUME_MAX_BYTES) {
+          jResume.value = '';
+          if (jResumeLabelText) jResumeLabelText.textContent = RESUME_LABEL_DEFAULT;
+          if (jResumeLabel) jResumeLabel.classList.remove('has-file');
+          if (resumeError) resumeError.hidden = false;
+          return;
+        }
+        if (resumeError) resumeError.hidden = true;
+        if (jResumeLabelText) jResumeLabelText.textContent = file.name;
+        if (jResumeLabel) jResumeLabel.classList.add('has-file');
+      });
     }
+
+    function updateApplySubmit() {
+      jobApplySubmit.disabled = !(jFirstname.value.trim() && jEmail.value.trim() && jConsent.checked && turnstileTokens.apply);
+    }
+    turnstileChangeHandlers.apply = updateApplySubmit;
     [jFirstname, jEmail].forEach(function (el) { el.addEventListener('input', updateApplySubmit); });
     jConsent.addEventListener('change', updateApplySubmit);
+    updateApplySubmit();
 
     jobApplySubmit.addEventListener('click', function () {
       if (jobApplySubmit.disabled) return;
-      var formEl = document.querySelector('[data-el="applyForm"]');
-      var doneEl = document.querySelector('[data-el="applyDone"]');
-      var nameSpan = document.querySelector('[data-text="applyDoneName"]');
-      if (nameSpan) nameSpan.textContent = jFirstname.value.trim();
-      if (formEl) formEl.hidden = true;
-      if (doneEl) doneEl.hidden = false;
+      jobApplySubmit.disabled = true;
+      jobApplySubmit.textContent = 'Wird gesendet …';
+      if (applyError) applyError.hidden = true;
+
+      var formData = new FormData();
+      formData.append('firstName', jFirstname.value.trim());
+      formData.append('lastName', jLastname ? jLastname.value.trim() : '');
+      formData.append('email', jEmail.value.trim());
+      formData.append('phone', jPhone ? jPhone.value.trim() : '');
+      formData.append('position', jPosition ? jPosition.value : '');
+      formData.append('message', jMessage ? jMessage.value.trim() : '');
+      if (jResume && jResume.files && jResume.files[0]) {
+        formData.append('resume', jResume.files[0], jResume.files[0].name);
+      }
+
+      submitFormDataToFormspark(formData, 'Bewerbungsformular', 'apply').then(function () {
+        var formEl = document.querySelector('[data-el="applyForm"]');
+        var doneEl = document.querySelector('[data-el="applyDone"]');
+        var nameSpan = document.querySelector('[data-text="applyDoneName"]');
+        if (nameSpan) nameSpan.textContent = jFirstname.value.trim();
+        if (formEl) formEl.hidden = true;
+        if (doneEl) doneEl.hidden = false;
+      }).catch(function () {
+        jobApplySubmit.textContent = applySubmitLabel;
+        resetTurnstile('apply');
+        updateApplySubmit();
+        if (applyError) applyError.hidden = false;
+      });
     });
   }
 })();

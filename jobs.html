@@ -395,17 +395,21 @@
           <textarea id="jMessage" class="field-input field-textarea" placeholder="Erzählen Sie uns kurz von sich und Ihrer Motivation..."></textarea>
 
           <p class="apply-label-note">Lebenslauf (optional)</p>
-          <div class="file-dropzone">
+          <label for="jResume" class="file-dropzone" id="jResumeLabel">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1b3865" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 20px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M17 8l-5-5-5 5M12 3v12"></path></svg>
-            <span>Sie können Ihren Lebenslauf gerne direkt per E-Mail an uns nachreichen – das Formular funktioniert auch ohne.</span>
-          </div>
+            <span id="jResumeLabelText">PDF oder Word-Datei auswählen (optional, max. 10 MB)</span>
+          </label>
+          <input type="file" id="jResume" name="resume" class="visually-hidden" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+          <p class="form-error" data-el="resumeError" hidden>Die Datei ist zu groß (max. 10 MB) oder hat das falsche Format (PDF oder Word).</p>
 
           <label class="kontakt-consent">
             <input type="checkbox" id="jConsent">
             <span>Ich habe die <a href="/datenschutzerklaerung">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten im Rahmen des Bewerbungsprozesses einverstanden.</span>
           </label>
 
+          <div class="turnstile-widget" data-turnstile="apply"></div>
           <button type="button" class="submit-btn" id="jobApplySubmit" disabled>Bewerbung absenden</button>
+          <p class="form-error" data-el="applyError" hidden>Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an.</p>
         </div>
 
         <div data-el="applyDone" hidden class="kontakt-done">
@@ -483,5 +487,6 @@
   <span>Jetzt bewerben</span>
 </a>
 <script src="js/main.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
 </body>
 </html>

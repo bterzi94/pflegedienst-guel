@@ -431,7 +431,9 @@
                 <span>Ich habe die <a href="/datenschutzerklaerung">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden.</span>
               </label>
 
+              <div class="turnstile-widget" data-turnstile="kontakt"></div>
               <button type="button" class="submit-btn" id="kontaktSubmit" disabled>Nachricht senden</button>
+              <p class="form-error" data-el="kontaktError" hidden>Da ist leider etwas schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns direkt an.</p>
             </div>
 
             <div data-el="kontaktDone" hidden class="kontakt-done">
@@ -527,5 +529,6 @@
 </a>
 
 <script src="js/main.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" async defer></script>
 </body>
 </html>
