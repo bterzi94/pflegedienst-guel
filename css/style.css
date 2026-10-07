@@ -158,11 +158,7 @@ img { max-width: 100%; display: block; }
 .hero-media {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-    url('../images/illustrations/hero.svg');
-  background-size: cover;
-  background-position: center 30%;
+  background-color: var(--cream);
   z-index: 0;
 }
 
@@ -1170,7 +1166,8 @@ a.content-item:hover .content-title svg { transform: translateX(3px); }
   .hero-media {
     background-image:
       linear-gradient(160deg, rgba(18, 32, 58, 0.5) 0%, rgba(18, 32, 58, 0.18) 55%, rgba(226, 35, 26, 0.22) 100%),
-      url('../images/illustrations/hero.svg');
+      url('../images/illustrations/hero-photo.jpg');
+    background-size: cover;
     background-position: center 30%;
     left: 624px; /* hero-inner padding (64) + hero-text width (520) + its right padding (40) */
   }
@@ -1429,8 +1426,8 @@ a.content-item:hover .content-title svg { transform: translateX(3px); }
     display: block;
     flex: 1;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)),
-      url('../images/illustrations/hero.svg');
+      linear-gradient(160deg, rgba(18, 32, 58, 0.38) 0%, rgba(18, 32, 58, 0.12) 55%, rgba(226, 35, 26, 0.16) 100%),
+      url('../images/illustrations/hero-photo.jpg');
     background-size: cover;
     background-position: center 30%;
   }
