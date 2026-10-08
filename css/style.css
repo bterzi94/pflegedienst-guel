@@ -1381,12 +1381,10 @@ a.content-item:hover .content-title svg { transform: translateX(3px); }
     padding: 0;
     margin-top: 56px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 32px;
+    gap: 20px;
   }
-  .team-card { flex: 0 1 calc(25% - 24px); max-width: calc(25% - 24px); }
-  .team-photo { width: 100%; height: 320px; }
+  .team-card { flex: 1; }
+  .team-photo { width: 100%; height: 220px; }
   .team-name { font-size: 18px; }
   .team-role { font-size: 14px; }
   .team-cta { margin-top: 40px; padding: 16px 32px; font-size: 16px; gap: 10px; }
